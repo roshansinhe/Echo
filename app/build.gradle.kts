@@ -1,7 +1,21 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+val secretsFile = rootProject.file("secrets.properties")
+val secrets = Properties()
+
+if (secretsFile.exists()) {
+    secrets.load(FileInputStream(secretsFile))
+}
+
+val apiKey = secrets["API_KEY"] as String? ?: ""
+val baseUrl = secrets["BASE_URL"] as String? ?: ""
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
+
 
 android {
     namespace = "com.example.echo"
@@ -17,6 +31,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
 
     buildTypes {
@@ -34,6 +50,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

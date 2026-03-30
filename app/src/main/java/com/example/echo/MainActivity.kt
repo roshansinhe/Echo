@@ -14,6 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.echo.ui.theme.EchoTheme
 
 class MainActivity : ComponentActivity() {
+    val apiKey = BuildConfig.API_KEY
+    val baseUrl = BuildConfig.BASE_URL
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,7 +24,7 @@ class MainActivity : ComponentActivity() {
             EchoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Echo App",
+                        name = baseUrl,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
