@@ -11,13 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.echo.home.viewmodel.HomeViewModel
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onPlayClick: () -> Unit
 ) {
     // Collect firstName from ViewModel Flow
     val firstName by viewModel.firstName.collectAsState(initial = null)
